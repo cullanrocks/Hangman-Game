@@ -1,4 +1,4 @@
-  var wordlist = ['plumbus', 'meeseek', 'szechuan', 'rick', 'morty', 'birdperson', 'mr poopy butthole', 'schwifty', 'gazorpazorp'];
+  var wordlist = ['plumbus', 'meeseek', 'szechuan', 'microverse', 'morty', 'birdperson', 'rick', 'schwifty', 'gazorpazorp'];
   var randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
   var hidden = []
   var wrong = []
@@ -23,7 +23,9 @@
       }
   }
   // When a key is hit, a function, that key is assigned to variable lettersGuessed. 
-  // We then get the index of letterGuessed from array alphabet, and assign that to variable guessedIndex. Another variable is created called match, which calls upon a function called
+  // We then get the index of letterGuessed from array alphabet, and assign that to variable guessedIndex. 
+  // Another variable is created called match, 
+  // which calls upon a function to check if the letter typed matches any of the letters in the randomWord. 
   document.onkeyup = function(event) {
           lettersGuessed = event.key;
           var guessedIndex = alphabet.indexOf(lettersGuessed);
@@ -34,10 +36,9 @@
               return;
           }
 
-
           //If the letter guessed is not in the word, push that letter to the wrong array, and subtract one from max guesses.
           if (randomWord.indexOf(lettersGuessed) === -1) {
-              wrong.push(lettersGuessed);
+              
               maxGuesses--;
 
           } else {
@@ -54,7 +55,7 @@
           //If there are no more blanks in hidden array, you win. Can also be stated as, if the index of hidden array has values equal to -1, you win. 
           if (hidden.indexOf('_') === -1) {
               wins++;
-              alert("Congrats, ya dingus")
+              alert("Congrats, ya dingus. The word was " + randomWord + ".")
               document.getElementById("audiowin").play();
               maxGuesses = 10
               randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
@@ -72,7 +73,7 @@
               maxGuesses = 10;
               blanks(randomWord);
           }
-          document.getElementById("wrongGuesses").innerHTML = lettersGuessed;
+          document.getElementById("wrongGuesses").innerHTML = wrong;
           document.getElementById("output").innerHTML = hidden;
           document.getElementById("remaining").innerHTML = maxGuesses;
           document.getElementById("wins").innerHTML = wins;
