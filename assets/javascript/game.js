@@ -112,9 +112,9 @@
       }
   }
 
-  function losesound() {
+  // function losesound() {
 
-  }
+  // }
 
   console.log(hidden)
   console.log(maxGuesses)
