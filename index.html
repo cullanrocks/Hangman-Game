@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!--     <script src="assets/java'script/game.js"></script> -->
+    <title>Hangman Game</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                <div class="header">
+                    <h1>THE HANGMAN GAME</h1>
+                </div>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <h2>Guess the word:</h2>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+        <div class="row">
+            <div id="game">
+                <p>Your guesses: <span id="output"></span></p>
+                <p>Guesses Left: <span id="remaining">10</span></p>
+                <p>Wins: <span id="wins">0</span></p>
+                <p>Losses: <span id="losses">0</span></p>
+            </div>
+        <img src="#">
+        <script type="text/javascript">
+        var wordlist = ['plumbus', 'meeseek', 'szechuan', 'rick', 'morty', 'birdperson', 'mr poopy butthole', 'schwifty', 'gazorpazorp'];
+        var randomWord = wordlist[Math.floor(Math.random() * wordlist.length);];
+        var hidden = []
+        var wrong = []
+        var alphabet = 'abcdefghijklmnopqrstuvwkyz'.split('');
+        var maxGuesses = 10;
+        var wins = 0;
+        var losses = 0;
+        var lettersGuessed;
+        var divvy;
+        blanks(randomWord);
+
+        
+        console.log(randomWord)
+
+
+        // When a key is hit, a function, that key is assigned to variable lettersGuessed. 
+        // We then get the index of letterGuessed from array alphabet, and assign that to variable guessedIndex.
+        function blanks(word) {
+            hidden = []
+            for (i = 0; i < randomWord.length; i++) {
+                hidden.push('_');
+                document.getElementById("output").innerHTML = hidden;
+            }
+        }
+
+        function counter(count) {
+            document.getElementById("remaining").innerHTML = maxGuesses;
+        }
+        document.onkeyup = function(event) {
+            lettersGuessed = event.key;
+            var guessedIndex = alphabet.indexOf(lettersGuessed);
+            console.log(lettersGuessed)
+                // A for loop goes through each index in the string of randomWord, until it has gone through the whole word. It then pushes blanks the length of the word into the html. 
+            
+
+
+            // If the guessed index is greater then -1, i.e, if the letter guessed is in the alphabet, splice the corresponding index from the alphabet array once.   
+            if (guessedIndex > -1) {
+                alphabet.splice(guessedIndex, 1)
+            }
+            // Otherwise, alert the user they have already guessed that letter. 
+            else {
+                alert("You've already entered that letter");
+                return;
+            }
+            //If the letter guessed is not in the word, push that letter to the wrong array, and subtract one from max guesses.
+            if (randomWord.indexOf(lettersGuessed) === -1) {
+                wrong.push(lettersGuessed);
+                maxGuesses--;
+                console.log(maxGuesses)
+            } else {
+                //If the letter guessed IS in the word, then search through all the letters in that word 
+                randomWord.indexOf(lettersGuessed)
+                for (i = 0; i < randomWord.length; i++);
+                
+
+                if (guessedIndex === randomWord[i]) {
+                    hidden.push(randomWord[i]);
+
+                }
+
+                // Other 
+
+
+            }
+
+
+
+        }
+        document.onkeyup = function() {
+
+        }
+
+        console.log(hidden)
+        console.log(maxGuesses)
+        </script>
+</body>
+
+</html>
+Computer chooses a random word from an array of words. function that hides a word by replacing the letters with underscores. a guess function that removes a letter from the alphabet array User presses a key to start. Each key press counts down the number of remaining guesses. Keys pressed get displayed. If a key pressed is in the word, then display it. If a user spells out an entire word, they win. Add a point to the win score. If the number of guesses runs out, the player loses. Game resets. Game start.
