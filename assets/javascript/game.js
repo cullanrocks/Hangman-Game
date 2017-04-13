@@ -55,15 +55,17 @@
           if (hidden.indexOf('_') === -1) {
               wins++;
               alert("Congrats, ya dingus")
+              document.getElementById("audiowin").play();
               maxGuesses = 10
               randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
+              alphabet = 'abcdefghijklmnopqrstuvwkyz'.split('');
               hidden = []
               wrong = []
-              alphabet = 'abcdefghijklmnopqrstuvwkyz'.split('');
               blanks(randomWord)
 
           } else if (maxGuesses <= 0) {
               losses++;
+              document.getElementById("audiolose").play();
               randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
               wrongGuesses = [];
               alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
@@ -108,6 +110,10 @@
               }
           }
       }
+  }
+
+  function losesound() {
+
   }
 
   console.log(hidden)
